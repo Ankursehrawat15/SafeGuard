@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReportIncident"
+    android:orientation="vertical">
+
+    <EditText
+        android:layout_margin="20dp"
+
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Name    (Mandatory)" />
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_margin="20dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="PhoneNo   (Mandatory)"
+        android:inputType="phone" />
+
+
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Date     (Mandatory)"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/editTextTextPostalAddress"
+        android:layout_width="match_parent"
+        android:layout_margin="20dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPostalAddress" />
+
+
+
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        >
+
+    <EditText
+        android:id="@+id/decriptionBox"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:ems="10"
+
+        android:gravity="start|top"
+       android:hint="Information" />
+    </LinearLayout>
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Information"
+        android:layout_gravity="center"
+        android:backgroundTint="#314e52"/>
+
+
+</LinearLayout>

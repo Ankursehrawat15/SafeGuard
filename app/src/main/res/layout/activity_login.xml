@@ -47,13 +47,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/usernameUser"
-            android:hint="Username"
+            android:id="@+id/emailUser"
+            android:hint="Email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"/>
 
 
 
@@ -82,22 +83,13 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-
-             android:background="#00000000"
-            android:text="Forgot password ?"
-            android:textColor="@color/black"
-            android:layout_gravity="right"
-            android:layout_margin="5dp"
-            />
 
 
         <Button
+            android:id="@+id/loginButtonUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="5dp"
             android:text="Login "
             android:padding="5dp"
@@ -106,6 +98,7 @@
 
         <Button
             android:id="@+id/callRegisterButton"
+            android:onClick="goToRegisteration"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"

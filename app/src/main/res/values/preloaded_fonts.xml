@@ -6,8 +6,11 @@
         <item>@font/antic</item>
         <item>@font/arbutus</item>
         <item>@font/basic</item>
+        <item>@font/bungee</item>
         <item>@font/candal</item>
         <item>@font/holtwood_one_sc</item>
+        <item>@font/muli_bold</item>
+        <item>@font/muli_extralight</item>
         <item>@font/suez_one</item>
     </array>
 </resources>

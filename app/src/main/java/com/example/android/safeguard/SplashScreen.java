@@ -8,23 +8,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private static int Splash_Screen = 2000;   // declaring variable for time
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);  // status bar remove
         setContentView(R.layout.activity_splash_screen);
 
           // created Handler
+        // declaring variable for time
+        int splash_Screen = 2000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-             Intent intent = new Intent(SplashScreen.this , Login.class);
+             Intent intent = new Intent(SplashScreen.this , Home.class);
              startActivity(intent);
               finish();
             }
-        }, Splash_Screen);
+        }, splash_Screen);
     }
 
 

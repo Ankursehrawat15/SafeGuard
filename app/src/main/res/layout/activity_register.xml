@@ -153,10 +153,12 @@
 
 
            <Button
+               android:id="@+id/signUpButton"
                android:layout_marginTop="15dp"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:text="create Account"
+
                android:backgroundTint="#314e52"/>
 
 
@@ -164,10 +166,11 @@
 
 
         <Button
+            android:id="@+id/goToLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00000000"
-            android:text="Already Have an Acoount? Login"
+            android:text="Already Have an Acoount?"
             android:textColor="#000"
 
             />
