@@ -12,7 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SafeGuard">
-        <activity android:name=".ReportIncident"></activity>
+        <activity android:name=".CloseGroup"></activity>
+        <activity android:name=".CovidGuideLines" />
+        <activity android:name=".Guidelines" />
+        <activity android:name=".IndiaTv" />
+        <activity android:name=".NewsPortal" />
+        <activity android:name=".Sos" />
+        <activity android:name=".ReportIncident" />
         <activity android:name=".Maps" />
         <activity android:name=".Register" />
         <activity android:name=".Login" />

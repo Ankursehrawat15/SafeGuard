@@ -5,13 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-public class ReportIncident extends AppCompatActivity {
+public class CloseGroup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report_incident);
+        setContentView(R.layout.activity_close_group);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
     }
 }

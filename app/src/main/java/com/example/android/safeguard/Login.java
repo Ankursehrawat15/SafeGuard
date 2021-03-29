@@ -29,9 +29,9 @@ import java.util.regex.Pattern;
 public class Login extends AppCompatActivity {
 
 
-    ActivityLoginBinding binding;
-    ProgressDialog progressbar;
-    FirebaseAuth auth;
+    ActivityLoginBinding binding;  // binding id xml file
+    ProgressDialog progressbar;  // progress bar
+    FirebaseAuth auth;      // for authentication
 
 
     @Override
@@ -42,6 +42,7 @@ public class Login extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         auth = FirebaseAuth.getInstance();
+
         progressbar = new ProgressDialog(this);
         progressbar.setMessage("Logging in ...");
 

@@ -22,15 +22,14 @@
             android:padding="20dp"
             android:background="#314e52"
             >
-
-
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/profileUser"
-                android:layout_width="73dp"
-                android:layout_height="75dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="20dp"
-                android:src="@drawable/user" />
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/user"
+               android:layout_marginTop="20dp"
+                app:civ_border_color="#FF000000"/>
 
 
             <TextView
@@ -81,6 +80,7 @@
 
 
             <RelativeLayout
+              android:onClick="goToNews"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -146,6 +146,91 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="#314e52">
+
+
+
+                <RelativeLayout
+                  android:onClick="gotToCloseGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/closeGroupText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/closeGroupIcon"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/white"
+                        android:text="CLOSE GROUP"
+                        android:textStyle="bold"
+                        android:textSize="24sp" />
+
+                    <ImageView
+
+                        android:id="@+id/closeGroupIcon"
+                        android:layout_width="122dp"
+                        android:layout_height="94dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        app:srcCompat="@drawable/group" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="#314e52">
+
+                <RelativeLayout
+                    android:id="@+id/callPolice"
+                    android:onClick="callToPolice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/closeGroupHeading"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/policeIcon"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/white"
+                        android:text="Call Police"
+                        android:textStyle="bold"
+                        android:textSize="20sp" />
+
+                    <ImageView
+                        android:id="@+id/policeIcon"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+
+                        app:srcCompat="@drawable/callpoliceicon" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -203,6 +288,8 @@
             app:cardBackgroundColor="#314e52">
 
             <RelativeLayout
+                android:id="@+id/goToSos"
+                android:onClick="goToSos"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView
@@ -247,6 +334,7 @@
 
 
             <RelativeLayout
+                android:onClick="goToGuidelines"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -310,6 +398,9 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
+
     </LinearLayout>
+
 
 </ScrollView>
