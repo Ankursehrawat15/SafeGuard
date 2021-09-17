@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class NewsPortal extends AppCompatActivity {
 
-    Button indiaTv;
+    Button indiaTv , international;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,14 @@ public class NewsPortal extends AppCompatActivity {
         setContentView(R.layout.activity_news_portal);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         indiaTv = findViewById(R.id.indiaTvPortal);
+        international = findViewById(R.id.interNews);
+
+        international.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NewsPortal.this , International.class));
+            }
+        });
 
 
         indiaTv.setOnClickListener(new View.OnClickListener() {

@@ -17,6 +17,11 @@ public class Guidelines extends AppCompatActivity {
     }
 
     public void gotToCovidGuide(View view) {
-        startActivity(new Intent(Guidelines.this , CovidGuideLines.class));
+        startActivity(new Intent(Guidelines.this, CovidGuideLines.class));
+    }
+
+
+    public void gotToGuide(View view) {
+        startActivity(new Intent(Guidelines.this, indiaGuidelines.class));
     }
 }

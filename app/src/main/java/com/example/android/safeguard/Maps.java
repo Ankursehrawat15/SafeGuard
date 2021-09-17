@@ -1,53 +1,149 @@
 package com.example.android.safeguard;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
-import android.content.Intent;
-import android.net.Uri;
+import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.widget.Toast;
 
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.SettingsClickListener;
-import com.karumi.dexter.listener.single.PermissionListener;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class Maps extends AppCompatActivity {
+public class Maps extends FragmentActivity implements OnMapReadyCallback, LocationListener {
+    private DatabaseReference refrence;
+    private LocationManager manager;
+    private final int MIN_TIME = 1000;
+    private final int MIN_DISTANCE = 1;
+    private GoogleMap mMap;
+    Marker myMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        checkPermission();
+        manager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        refrence = FirebaseDatabase.getInstance().getReference().child("ankur15099");
+      //  FirebaseDatabase.getInstance().getReference().setValue("this is tracker app");
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+        getLocationUpdates();
+        
+        readChanges();
+
     }
 
-    private void checkPermission() {
-        Dexter.withContext(this).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).withListener(new PermissionListener() {
+    private void readChanges() {
+        refrence.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
-                Toast.makeText(Maps.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    try {
+                        MyLocation location = snapshot.getValue(MyLocation.class);
+                        if(location != null){
+                            LatLng india = new LatLng(location.getLatitude(), location.getLongitude());
+                            myMarker.setPosition(india);
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(india));
 
+                        }
+                    }catch (Exception e){
+                        Toast.makeText(Maps.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
             }
 
             @Override
-            public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-                Intent intent = new Intent();
-                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                Uri uri = Uri.fromParts("package" , getPackageName() , "");
-                intent.setData(uri);
-                startActivity(intent);
-            }
+            public void onCancelled(@NonNull DatabaseError error) {
 
-            @Override
-            public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
-                permissionToken.continuePermissionRequest();
             }
-        }).check();
+        });
+    }
+
+    private void getLocationUpdates(){
+        if(manager != null) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, this);
+                } else if (manager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                    manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME, MIN_DISTANCE, this);
+                } else {
+                    Toast.makeText(this, "No permission given", Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                ActivityCompat.requestPermissions(this , new String [] {Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode == 101){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                getLocationUpdates();
+            }else{
+                Toast.makeText(this, "Permission Required", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng india = new LatLng(28.4595, 77.0266);
+        myMarker =  mMap.addMarker(new MarkerOptions().position(india).title("Marker in your city"));
+        mMap.setMinZoomPreference(10);
+//        mMap.getUiSettings().setZoomControlsEnabled(true);
+
+//         mMap.getUiSettings().setAllGesturesEnabled(true);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(india));
+    }
+
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        if(location != null){
+            saveLocation(location);
+        }else{
+            Toast.makeText(this, "Location Denied", Toast.LENGTH_SHORT).show();
+        }
+        
+    }
+
+    private void saveLocation(Location location) {
+               refrence.setValue(location);
     }
 }

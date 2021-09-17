@@ -57,15 +57,7 @@ public class Login extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        FirebaseUser currentUser = auth.getCurrentUser();
-//        if(currentUser == null){
-//            startActivity(new Intent(Login.this, DashboardActivity.class));
-//            finish();
-//        }
-//    }
+
 
     public void checkUser() {
         String email, password;

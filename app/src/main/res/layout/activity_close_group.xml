@@ -41,13 +41,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/emergencyNo1"
+
             android:layout_marginTop="5dp"
             android:hint="Emergency Contact 1"
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emergencyNo1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"/>
@@ -96,6 +97,7 @@
             android:layout_marginTop="40dp"/>
 
         <EditText
+            android:id="@+id/messageE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="40dp"

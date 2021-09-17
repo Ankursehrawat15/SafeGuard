@@ -15,8 +15,6 @@ public class CovidGuideLines extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-
-
         WebView webView = findViewById(R.id.goToCovid);
         webView.loadUrl("https://www.mohfw.gov.in");
         webView.setWebViewClient(new WebViewController());

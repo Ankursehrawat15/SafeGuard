@@ -11,5 +11,6 @@
     <string name="menu_BBcNews">BBC Portal</string>
     <string name="menu_CnnNews">CNN Portal</string>
     <string name="menu_FoxNews">Fox Portal</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
